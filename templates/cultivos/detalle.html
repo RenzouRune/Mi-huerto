@@ -1,0 +1,11 @@
+{% extends "base.html" %}
+{% block title %}Detalle de {{ nombre }}{% endblock  %}
+{% block content %}
+<h2>Cultivo {{ nombre }}</h2>
+<p><strong>tipo: </strong>{{ tipo }}</p>
+<p><strong>Descripcion: </strong>{{ descripcion }}</p>
+<p><strong>Fecha de siembra: </strong>{{ siembra }}</p>
+<p><strong>Tiempo estimado cosecha: </strong>{{ cosecha }}</p>
+
+<a href="{% url 'listar_cultivos'%}" class="btn btn-secondary mt-3">Volver Listado</a>
+{% endblock  %}

@@ -2,12 +2,48 @@
 {% block title %}Mis Cultivos{% endblock title %}Mis Cultivos
 {% block content %}
     <h1 class = 'mb-4'>Mis Cultivos</h1>
-    <ul class = 'list-group'> 
-        {% for cultivo in cultivos %}
-            <li class='list-group-item'>{{cultivo}} </li>
-        {% empty %}
-            <li class='list-group-item'>No hay cultivos que mostrar</li>
-        {% endfor %}
-        
-    </ul>
+
+    <h2>Filtro de cultivos</h2>
+    <form class="mb-4" method="get">
+        <div class="row g-2">
+            <input type="text" class="form-control"
+            placeholder="Buscar por nombre" name="buscar" value="{{ request.GET.buscar }}">
+        </div>
+        <div class="col-md-4">
+            <select name="tipo" class="form-select">
+                <option value="">--Tipo de Cultivo</option>
+                <option value="hoja" {% if request.GET.tipo == "hoja" %}selected{% endif %}>Hoja</option>
+                <option value="fruto" {% if request.GET.tipo == "fruto"%}selected{% endif %}>fruto</option>
+                <option value="raiz" {% if request.GET.tipo == "raiz"%}selected{% endif %}>raiz</option>
+            </select>      
+        </div>
+        <div class="col-md-2">
+            <button class="btn btn-primary w-100" type="submit">Filtrar</button>
+        </div>
+    </form>
+    <table class="table">
+        <thead>
+            <tr>
+            <th scope="col">Nombre</th>
+            <th scope="col">Tipo</th>
+            <th scope="col">Acciones</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for cultivo in cultivos %}
+            <tr>
+                <td>{{cultivo.nombre}}</td>
+                <td>{{cultivo.tipo}}</td>
+                <td>
+                    <a href="{% url 'detalle_cultivo' cultivo.nombre%}" class="btn btn-sm btn-outline-primary">Ver detalles</a>
+                </td>
+            </tr>
+            {% empty %}
+            <tr>
+                <td class="">No hay informacion </td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+
 {% endblock content %}
