@@ -45,5 +45,18 @@
             {% endfor %}
         </tbody>
     </table>
+        <form class="mt-4" method="get" action="{% url 'recomendar_cultivos' %}">
+        <div class="mb-3">
+            <label for="estacion" class="form-label">Selecciona una estación del año:</label>
+            <select id="estacion" name="estacion" class="form-select">
+                <option value="">--Selecciona--</option>
+                <option value="primavera">Primavera</option>
+                <option value="verano">Verano</option>
+                <option value="otoño">Otoño</option>
+                <option value="invierno">Invierno</option>  
+            </select>
+        </div>
+        <button type="submit" class="btn btn-success">Enviar</button>
+    </form>
 
 {% endblock content %}
