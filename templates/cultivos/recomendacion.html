@@ -1,0 +1,18 @@
+{% extends "base.html" %}
+
+{% block title %}Recomendación de cultivos{% endblock %}
+
+{% block content %}
+    <h1>Cultivos recomendados para {{ estacion|title }}</h1>
+    {% if cultivos_recomendados %}
+        <ul>
+            {% for cultivo in cultivos_recomendados %}
+                <li>{{ cultivo }}</li>
+            {% endfor %}
+        </ul>
+    {% else %}
+        <p>No hay cultivos recomendados para esta estación.</p>
+    {% endif %}
+
+    <a href="{% url 'listar_cultivos' %}" class="btn btn-secondary mt-3">Volver al listado de cultivos</a>
+{% endblock %}

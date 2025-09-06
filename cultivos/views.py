@@ -40,11 +40,29 @@ def detalle_cultivo(request, nombre):
             'siembra':'Marzo - Mayo',
             'cosecha':'60 dias despues de ser sembrado'            
         },
-        'Albahca':{
+        'Albahaca':{
             'tipo':'hoja',
             'descripcion':'Prefiere climas calidos, no tolerancia a las heladas',
             'siembra':'Septiembre - Noviembre',
             'cosecha':'Noviembre - Enero'
+        },
+        'Zanahoria':{
+            'tipo':'raiz',
+            'descripcion':'Prefiere climas calidos, no tolerancia a las heladas',
+            'siembra':'Noviembre - Enero',
+            'cosecha':'Enero - Febrero'
+        },
+        'Cilantro':{
+            'tipo':'hoja',
+            'descripcion':'Prefiere climas Frios, no tolerancia a las Calientes',
+            'siembra':'Febrero - Abril',
+            'cosecha':'Abril - Mayo'
+        },
+        'Pimiento':{
+            'tipo':'fruto',
+            'descripcion':'Prefiere climas calidos, no tolerancia a las heladas',
+            'siembra':'Julio - Septiembre',
+            'cosecha':'Septiembre - Noviembre'
         },
     }
     cultivos = cultivos.get(nombre)
@@ -58,3 +76,24 @@ def detalle_cultivo(request, nombre):
         'cosecha':cultivos['cosecha'],
     }
     return render(request, 'cultivos/detalle.html', contexto)
+
+
+
+def recomendar_cultivos(request):
+    estacion = request.GET.get('estacion', '')
+    estaciones = {
+        'primavera': 
+            {'Lechuga', 'Cilantro'},
+        'verano': 
+            {'Pimiento', 'Albahaca'},
+        'otoño': 
+            {'Tomate', 'Albahaca', 'Zanahoria'},
+        'invierno': 
+            {'Zanahoria', 'Tomate'},
+    }
+    cultivos_recomendados = estaciones.get(estacion, [])
+    contexto = {
+        'estacion': estacion,
+        'cultivos_recomendados': cultivos_recomendados,
+    }
+    return render(request, 'cultivos/recomendacion.html', contexto)
