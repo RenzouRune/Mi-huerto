@@ -1,0 +1,14 @@
+{% extends "base.html" %}
+{% block tittle %}Agregar Cultivos{% endblock  %}
+{% block content %}
+    <div class="container mt-4">
+        <h2>Agregar nuevo cultivo</h2>
+        <form method="post">
+            {% csrf_token %}
+            {{ form.as_p }}
+            <button type="submit" class="btn btn-primary">Guardar Cultivo</button>
+            <a href="{% url 'listar_cultivos' %}" class="btn btn-secondary">Volver</a>
+        </form>
+    </div>
+
+{% endblock %}
